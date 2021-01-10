@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="libs/bootstrap-4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="libs/fontawesome-free-5.12.1-web/css/all.css"/>
+    <link rel="stylesheet" href="styles/browse.css" />
+
+    <title>Browse images</title>
+</head>
+<body>
+<header th:with="navItem='browse'" th:insert="commons :: header"></header>
+
+<div class="container">
+    <div class="my-container">
+        <h3 class="browse-h2">Browse images:</h3>
+    </div>
+    <form enctype="multipart/form-data" method="post" action="/image/browse">
+        <p>Upload your photos to the server (up to 100MB)</p>
+        <p><input type="file" name="file" multiple accept="image/*,image/jpeg">
+            <input type="submit" value="Upload"></p>
+    </form>
+</div>
+
+<script src="libs/jquery/jquery-3.4.1.min.js"></script>
+<script src="libs/popper/popper.min.js"></script>
+<script src="libs/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

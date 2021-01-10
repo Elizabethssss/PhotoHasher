@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="libs/bootstrap-4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="libs/fontawesome-free-5.12.1-web/css/all.css"/>
+    <link rel="stylesheet" href="styles/browse.css" />
+
+    <title>Search images</title>
+</head>
+<body>
+<header th:with="navItem='search'" th:insert="commons :: header"></header>
+
+<div class="container">
+    <div class="my-container">
+        <h3 class="browse-h2">Search images:</h3>
+    </div>
+    <form enctype="multipart/form-data" method="post" action="/search">
+        <p>Choose similarity threshold:</p>
+        <input name="threshold" type="range" min="0" max="100" step="1" value="90">
+        <p>Search similar pictures by given one:</p>
+        <p><input type="file" name="file" accept="image/*,image/jpeg">
+            <input type="submit" value="Search"></p>
+    </form>
+
+    <div class="row">
+        <div th:each="photo : ${similarPhotos}" class="col-10">
+            <div>
+                <h3 th:text="'Hash: ' + ${photo.getHash()}"></h3>
+                <p th:text="'Storage location: ' + ${photo.getPlace()}"></p>
+                <p th:text="'Threshold percent: ' + ${photo.getThreshold()} + '%'"></p>
+                <p th:text="'Id: ' + ${photo.getId()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="libs/jquery/jquery-3.4.1.min.js"></script>
+<script src="libs/popper/popper.min.js"></script>
+<script src="libs/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
